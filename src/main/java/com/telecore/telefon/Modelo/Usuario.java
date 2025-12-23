@@ -1,15 +1,18 @@
 package com.telecore.telefon.Modelo;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -35,8 +38,10 @@ public class Usuario {
     private String password;
     @Column(name="fechaCreacion")
     private LocalDateTime fechaCreacion;
-    @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="rol_id", referencedColumnName="id")
+    @ManyToOne
+    @JoinColumn(name="rol_id")
     private Rol rol;
+    @OneToMany(mappedBy="usuario", fetch=FetchType.LAZY)
+    private List<Llamada> llamadas = new ArrayList<>();
 
 }
