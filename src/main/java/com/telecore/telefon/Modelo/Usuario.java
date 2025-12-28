@@ -44,4 +44,8 @@ public class Usuario {
     @OneToMany(mappedBy="usuario", fetch=FetchType.LAZY)
     private List<Llamada> llamadas = new ArrayList<>();
 
+    @ManyToOne
+    @JoinColumn(name="departamento_id")
+    private Departamento departamento;
+
 }

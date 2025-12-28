@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+    
+    <nav class="nav nav-pills nav-justified">
+        <a class="nav-link active bg-primary" aria-current="page" href="#">Sobre Nosotros</a>
+        <a class="nav-link bg-info" href="#">Login</a>
+        <a class="nav-link bg-waring" href="#">Contactos</a>
+    
+    </nav>
+    <div class="container">
+        <div class="text-center">
+            <h1>Bienvenido a Telefon</h1>
+        </div>
+    </div>
+
+    <p>Esta es la página de inicio.</p>
+    <a th:href="@{/acceder}">Login</a>
+    <form th:action="@{/logout}" method="post" style="display: inline;">
+        <button type="submit">Logout</button>
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
