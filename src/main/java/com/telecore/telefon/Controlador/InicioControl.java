@@ -16,4 +16,8 @@ public class InicioControl {
     public String login(){
         return "login";
     }
+    @GetMapping("/crear")
+    public String crear(){
+        return "Registrar";
+    }
 }
