@@ -15,9 +15,9 @@ import com.telecore.telefon.Servicio.Interfaces.Iusuario;
 
 
 @Service
-public class UsuarioServicio implements Iusuario {
+public class UserService implements Iusuario {
 
-    private static final Logger logger = LoggerFactory.getLogger(UsuarioServicio.class);
+    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
     @Autowired
     UsuarioRepo usuarioRepo;
