@@ -14,6 +14,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Getter @Setter
 @AllArgsConstructor
@@ -34,11 +36,30 @@ public class Extension {
     @Column(name="username")
     private String username;
     @Column(name="tipoExtension")
-    private String tipo = "SIP";
+    private TipoExtension tipo = TipoExtension.SIP;
     @Column(name="contexto")
     private String contexto = "internos";
+    @Column(name="estadoExtension")
+    private EstadoExtension estadoExtension = EstadoExtension.ACTIVA;
+    @Column(name="fechaCreacion")
+    private LocalDateTime fechaCreacion;
     @OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
     @JoinColumn(name="usuario_id", referencedColumnName="id")
     private Usuario usuario;
+
+    public enum TipoExtension{
+        SIP,
+        IAX,
+        VIRTUAL,
+        FAX,
+        CONFERENCIA
+
+    }
+    public enum EstadoExtension{
+        ACTIVA,
+        INACTIVA,
+        BLOQUEADA,
+        MANTENIMIENTO
+    }
     
 }
