@@ -34,13 +34,6 @@ Historial de llamadas por usuario
 
 Relación uno-a-uno con extensiones
 
-### Gestión Departamental
-
-Organización por departamentos
-
-Prefijos de extensión por departamento
-
-Reportes por área
 
 ---
 
