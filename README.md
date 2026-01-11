@@ -3,7 +3,7 @@ Sistema backend para administración de extensiones telefónicas, usuarios y dep
 
 https://img.shields.io/badge/Java-17-orange
 https://img.shields.io/badge/Spring%2520Boot-3.1.5-green
-https://img.shields.io/badge/PostgreSQL-15-blue
+https://img.shields.io/badge/MySQL-8.0-blue
 https://img.shields.io/badge/License-MIT-yellow
 
 Características Principales
