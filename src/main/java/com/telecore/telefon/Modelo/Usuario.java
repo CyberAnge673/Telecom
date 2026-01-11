@@ -27,15 +27,10 @@ public class Usuario {
     private String email;
     @Column(name="fechaCreacion")
     private LocalDateTime fechaCreacion;
-    @ManyToOne
-    @JoinColumn(name="rol_id")
-    private Rol rol;
     @OneToMany(mappedBy="usuario", fetch=FetchType.LAZY)
     private List<Llamada> llamadas = new ArrayList<>();
     @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
     private Extension extension;
-    @ManyToOne
-    @JoinColumn(name="departamento_id")
-    private Departamento departamento;
+
 
 }
