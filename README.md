@@ -28,7 +28,6 @@ Tipos de extensión (SIP, IAX, Virtual, Fax, Conferencia)
 
 CRUD completo de usuarios
 
-Asignación de roles y departamentos
 
 Historial de llamadas por usuario
 
