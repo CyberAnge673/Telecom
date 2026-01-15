@@ -8,6 +8,7 @@ import com.telecore.telefon.DTO.Response.UsuarioResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.telecore.telefon.Modelo.Usuario;
@@ -22,7 +23,11 @@ public class UserService implements Iusuario {
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
     @Autowired
-    UsuarioRepo usuarioRepo;
+    private PasswordEncoder passwordEncoder;
+    @Autowired
+    private UsuarioRepo usuarioRepo;
+
+
 
     @Override
     public Boolean guardarUsuario(UsarioRequest dto) {
@@ -32,6 +37,8 @@ public class UserService implements Iusuario {
             user.setEmail(dto.email());
             user.setNombre(dto.nombre());
             user.setApellido(dto.apellido());
+            user.setPassword(passwordEncoder.encode(dto.password()));
+            user.setEstado("ACTIVO");
             usuarioRepo.save(user);
             logger.info("Usuario guardado correctamente");
             return true;
@@ -72,11 +79,11 @@ public class UserService implements Iusuario {
         }
 
 
-        // TODO Auto-generated method stub
+        // TODO Auto-generated method stu
        
     }
 
-    
+
 
 
 

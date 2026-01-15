@@ -25,12 +25,20 @@ public class Usuario {
     private String apellido;
     @Column(name="email", unique=true)
     private String email;
-    @Column(name="fechaCreacion")
+    @Column(name= "password")
+    private String password;
+    @Column(name="fechaCreacion", updatable = false)
     private LocalDateTime fechaCreacion;
+    @Column(name="Estado")
+    private String estado;
     @OneToMany(mappedBy="usuario", fetch=FetchType.LAZY)
     private List<Llamada> llamadas = new ArrayList<>();
     @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
     private Extension extension;
 
+    @PrePersist
+    protected  void hora(){
+        this.fechaCreacion = LocalDateTime.now();
+    }
 
 }
