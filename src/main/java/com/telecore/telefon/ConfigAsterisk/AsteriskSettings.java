@@ -1,14 +1,20 @@
 package com.telecore.telefon.ConfigAsterisk;
 
 import org.asteriskjava.pbx.DefaultAsteriskSettings;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
+import lombok.Setter;
+
+@Setter
+@Component
+@ConfigurationProperties(prefix = "asterisk")
 public class AsteriskSettings extends DefaultAsteriskSettings {
 
-    private static final String ipServeer = "192.168.101.100";
-    private static final String host = "192.168.101.72";
-    private static final String passwordServer="Asterisk18";
-    private static final String managerUser="contexto";
+    private String ipServer;
+    private String host;
+    private String managerUser;
+    private String passwordServer;
 
     @Override
     public String getManagerPassword() {
@@ -22,7 +28,7 @@ public class AsteriskSettings extends DefaultAsteriskSettings {
 
     @Override
     public String getAsteriskIP() {
-        return ipServeer;
+        return ipServer;
     }
 
     @Override
