@@ -28,11 +28,9 @@ Tipos de extensión (SIP, IAX, Virtual, Fax, Conferencia)
 
 CRUD completo de usuarios
 
-
 Historial de llamadas por usuario
 
 Relación uno-a-uno con extensiones
-
 
 ---
 
@@ -62,11 +60,9 @@ Documentación: SpringDoc OpenAPI 3
 
 Logging: SLF4J con Log4j2
 
-Dependencias: Lombok, MapStruct, Validation API, java-asterisk 
-
+Dependencias: Lombok, MapStruct, Validation API, java-asterisk
 
 Testing: JUnit 5, Mockito
-
 
 ## Lisencia  
 
