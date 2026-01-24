@@ -70,4 +70,4 @@ Testing: JUnit 5, Mockito
 
 ## Lisencia  
 
-Este proyecto está licenciado bajo la Licencia MIT. Consulte el archivo LICENSE para más detalles.
+Este proyecto está licenciado bajo la Licencia MIT. Consulte el archivo [LICENSE](LICENSE) para más detalles.
