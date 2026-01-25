@@ -62,9 +62,11 @@ Documentación: SpringDoc OpenAPI 3
 
 Logging: SLF4J con Log4j2
 
-Dependencias: Lombok, MapStruct, Validation API
+Dependencias: Lombok, MapStruct, Validation API, java-asterisk 
+
 
 Testing: JUnit 5, Mockito
+
 
 ## Lisencia  
 
