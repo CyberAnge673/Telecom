@@ -9,7 +9,7 @@ import com.telecore.telefon.Modelo.Usuario;
 public interface Iusuario {
     public List<UsuarioResponse> listarUsuarios();
     public Boolean guardarUsuario(UsarioRequest usuario);
-    public Usuario obtenerUsuario(Long id); 
+    public UsuarioResponse obtenerUsuario(Long id);
     
     
     

@@ -33,7 +33,6 @@ public class UserService implements Iusuario {
     public Boolean guardarUsuario(UsarioRequest dto) {
         try{
             Usuario user = new Usuario();
-            user.setApellido(dto.nombre());
             user.setEmail(dto.email());
             user.setNombre(dto.nombre());
             user.setApellido(dto.apellido());
@@ -50,11 +49,12 @@ public class UserService implements Iusuario {
     }
 
     @Override
-    public Usuario obtenerUsuario(Long id) {
+    public UsuarioResponse obtenerUsuario(Long id) {
 
         try{
             logger.info("Obteniendo usuario con ID: " + id);
-            return usuarioRepo.findById(id).orElse(null);
+            Usuario usuario = usuarioRepo.findById(id).orElseThrow(() -> new RuntimeException());
+            return new UsuarioResponse(usuario);
         }
         catch(Exception e){
             return null;
@@ -65,9 +65,8 @@ public class UserService implements Iusuario {
     public List<UsuarioResponse > listarUsuarios() {
         try{
             logger.info("Listando todos los usuarios");
-            List<Usuario> usuario = new ArrayList<>();;
-            usuario = usuarioRepo.findAll();
-            usuario.forEach(user -> logger.info(user.toString()));
+            List<Usuario> usuario =  usuarioRepo.findAll();
+            usuario.forEach(user -> logger.info(user.toString()));;
 
            return usuario.stream()
                     .map(UsuarioResponse::new)

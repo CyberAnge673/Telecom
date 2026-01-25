@@ -14,5 +14,7 @@ public record UsarioRequest (
         String password
 ){
 
+
+
 }
 
