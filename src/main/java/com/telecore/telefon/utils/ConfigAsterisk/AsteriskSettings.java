@@ -1,4 +1,4 @@
-package com.telecore.telefon.ConfigAsterisk;
+package com.telecore.telefon.utils.ConfigAsterisk;
 
 import org.asteriskjava.pbx.DefaultAsteriskSettings;
 import org.springframework.boot.context.properties.ConfigurationProperties;

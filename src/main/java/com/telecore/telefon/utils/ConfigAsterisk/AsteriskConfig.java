@@ -1,4 +1,4 @@
-package com.telecore.telefon.ConfigAsterisk;
+package com.telecore.telefon.utils.ConfigAsterisk;
 
 import org.asteriskjava.live.AsteriskServer;
 import org.asteriskjava.live.DefaultAsteriskServer;

@@ -35,6 +35,9 @@ public class Usuario {
     private List<Llamada> llamadas = new ArrayList<>();
     @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
     private Extension extension;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="Rol_id")
+    private  Rol rol;
 
     @PrePersist
     protected  void hora(){
