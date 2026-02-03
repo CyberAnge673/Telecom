@@ -4,7 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.telecore.telefon.Modelo.Usuario;
 
-
 public interface UsuarioRepo extends JpaRepository<Usuario, Long> {
+
+	java.util.Optional<Usuario> findByNombre(String nombre);
 
 }
