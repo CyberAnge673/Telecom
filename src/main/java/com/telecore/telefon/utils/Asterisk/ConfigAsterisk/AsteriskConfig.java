@@ -1,4 +1,4 @@
-package com.telecore.telefon.utils.ConfigAsterisk;
+package com.telecore.telefon.utils.Asterisk.ConfigAsterisk;
 
 import org.asteriskjava.live.AsteriskServer;
 import org.asteriskjava.live.DefaultAsteriskServer;
@@ -12,7 +12,7 @@ public class AsteriskConfig {
     public AsteriskServer connection(AsteriskSettings asteriskSettings){
         return new DefaultAsteriskServer(
                 asteriskSettings.getAsteriskIP(),
-                asteriskSettings.getAgiHost(),
+                asteriskSettings.getManagerUsername(),
                 asteriskSettings.getManagerPassword()
         );
     }

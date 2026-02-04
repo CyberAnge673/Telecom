@@ -1,5 +1,6 @@
-package com.telecore.telefon.utils.ConfigAsterisk;
+package com.telecore.telefon.utils.Asterisk.ConfigAsterisk;
 
+import lombok.Builder;
 import org.asteriskjava.pbx.DefaultAsteriskSettings;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
@@ -35,4 +36,6 @@ public class AsteriskSettings extends DefaultAsteriskSettings {
     public String getAgiHost() {
         return host;
     }
+
+
 }

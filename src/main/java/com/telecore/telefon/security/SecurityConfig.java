@@ -23,12 +23,13 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(csrf -> csrf.disable())
+                .httpBasic(Customizer.withDefaults())
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // Sin estado
                 .authorizeHttpRequests(auth -> auth
                         // Permitir crear usuarios y extensiones sin estar logueado
                         .requestMatchers(HttpMethod.POST, "/Usuario", "/extensiones").permitAll()
                         // Permitir consultar usuarios y extensiones
-                        .requestMatchers(HttpMethod.GET, "/Usuario/**", "/extensiones/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/Usuario/**", "/extensiones/**").hasRole("ADMIN")
                         // Cualquier otra ruta requiere autenticación
                         .anyRequest().authenticated()
                 )
