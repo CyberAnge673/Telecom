@@ -8,7 +8,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 public class UsuarioDetalles implements UserDetails {
     private Usuario usuario;
@@ -19,7 +18,8 @@ public class UsuarioDetalles implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + usuario.getRol()));
+        String rolNombre = usuario.getRol() != null ? usuario.getRol().getNombre() : "USER";
+        return Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + rolNombre));
     }
 
     @Override
@@ -30,6 +30,26 @@ public class UsuarioDetalles implements UserDetails {
     @Override
     public String getUsername() {
         return usuario.getNombre();
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return usuario.getEstado() == null || usuario.getEstado().equalsIgnoreCase("ACTIVO");
     }
 
 }
