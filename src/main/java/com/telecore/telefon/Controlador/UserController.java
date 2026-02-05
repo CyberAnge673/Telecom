@@ -1,7 +1,6 @@
 package com.telecore.telefon.Controlador;
 
 import com.telecore.telefon.DTO.Response.UsuarioResponse;
-import com.telecore.telefon.Modelo.Usuario;
 import com.telecore.telefon.Servicio.Servicios.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,12 +8,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.telecore.telefon.DTO.Request.UsarioRequest;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/Usuario")
 public class UserController {
     @Autowired
     UserService userService;
+
+    @GetMapping
+    public List<UsuarioResponse> obtenerUsarios(){
+        return userService.listarUsuarios();
+    }
 
     @PostMapping
     public ResponseEntity<String>guardar(@RequestBody @Valid UsarioRequest request){
