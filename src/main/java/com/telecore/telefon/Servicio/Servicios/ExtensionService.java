@@ -1,6 +1,7 @@
 package com.telecore.telefon.Servicio.Servicios;
 
 import com.telecore.telefon.DTO.Request.ExtensionRequest;
+import com.telecore.telefon.DTO.Response.ExtensionesResponse;
 import com.telecore.telefon.Modelo.Extension;
 import com.telecore.telefon.Modelo.Usuario;
 import com.telecore.telefon.Repositorio.ExtensionRepo;
@@ -16,6 +17,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -44,7 +47,9 @@ public class ExtensionService implements Iextension {
                         .orElseThrow(() -> new RuntimeException("Usuario no encotrado"));
                 extension.setUsuario(usuario);
             }
+            extensionRepo.save(extension);
             log.info("Usuario guardado");
+            return true;
 
 
         }catch (Exception e){
@@ -52,28 +57,31 @@ public class ExtensionService implements Iextension {
             log.error(e.getMessage());
             return false;
         }
-        return true;
+
     }
 
 
 
     @Override
-    public ArrayList<Extension> obtenerExtension() {
+    public List<ExtensionesResponse> obtenerExtension() {
         try {
 
-            List<ExtensionRequest> exte = new ArrayList<>();
-
+            return extensionRepo.findAll()
+                    .stream()
+                    .map(ExtensionesResponse::new)
+                    .collect(Collectors.toList()).reversed();
 
 
         }catch (Exception e){
             return null;
         }
-        return null;
+
     }
 
 
     @Override
-    public Boolean eliminarExtension() {
+    public Boolean eliminarExtension(long id) {
+        extensionRepo.deleteById(id);
         return null;
     }
 
