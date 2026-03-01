@@ -18,7 +18,7 @@ public class ExtensionesResponse {
     private String username;
     private String tipo;           // "SIP", "IAX", etc.
     private String estado;         // "ACTIVA", "INACTIVA", etc.
-    private String contexto;       // "internos", "externos", etc.
+    private String contexto;       // "INTERNOS", "EXTERNOS", etc.
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime fechaCreacion;
     private Long usuarioId;        // null si no está asignada
