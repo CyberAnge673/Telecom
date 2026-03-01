@@ -12,29 +12,29 @@ import java.util.List;
 
 @Component
 public class AsteriskCliente {
-    @Autowired
-    private AsteriskServer server;
+	@Autowired
+	private AsteriskServer server;
 
-    @PostConstruct
-    private void init() throws Exception{
-        server.initialize();
-    }
+	@PostConstruct
+	private void init() throws Exception {
+		server.initialize();
+	}
 
-    public String mensaje(String comado) throws Exception{
-        Collection<AsteriskChannel> canal = server.getChannels();
-        List<String> cli = server.executeCliCommand(comado);
-        return String.join("\n", cli);
-    }
+	public String mensaje(String comado) throws Exception {
+		Collection<AsteriskChannel> canal = server.getChannels();
+		List<String> cli = server.executeCliCommand(comado);
+		return String.join("\n", cli);
+	}
 
-    //public String obtenerConexiones();
-    //public String
-    public Collection<AsteriskChannel> getChannels(){
-        return server.getChannels();
-    }
+	// public String obtenerConexiones();
+	// public String
+	public Collection<AsteriskChannel> getChannels() {
+		return server.getChannels();
+	}
 
-    @PreDestroy
-    private void destroy() throws Exception{
-        server.shutdown();
-    }
+	@PreDestroy
+	private void destroy() throws Exception {
+		server.shutdown();
+	}
 
 }

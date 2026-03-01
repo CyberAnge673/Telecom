@@ -19,45 +19,41 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Autowired
-    private JwtRequestFilter jwtRequestFilter;
+	@Autowired
+	private JwtRequestFilter jwtRequestFilter;
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http
-                .csrf(csrf -> csrf.disable())
-                .httpBasic(Customizer.withDefaults())
-                .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // Sin estado
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/**").permitAll()
-                        // Permitir crear usuarios y extensiones sin estar logueado
-                        .requestMatchers(HttpMethod.POST, "/Usuario", "/extensiones").permitAll() // TODO cambiar a
-                                                                                                  // autenticado
-                        // Permitir consultar usuarios y extensiones
-                        .requestMatchers(HttpMethod.GET, "/Usuario/**", "/extensiones/**").hasRole("ADMIN")
-                        // Cualquier otra ruta requiere autenticación
-                        .anyRequest().authenticated())
-                .formLogin(form -> form.disable()) // Desactivar formulario
-                .httpBasic(Customizer.withDefaults()) // Permitir Auth básica para pruebas
-                .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
-                .build();
-    }
+	@Bean
+	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+		return http.csrf(csrf -> csrf.disable()).httpBasic(Customizer.withDefaults())
+				.sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // Sin estado
+				.authorizeHttpRequests(auth -> auth.requestMatchers("/auth/**").permitAll()
+						// Permitir crear usuarios y extensiones sin estar logueado
+						.requestMatchers(HttpMethod.POST, "/Usuario", "/extensiones").permitAll() // TODO cambiar a
+																									// autenticado
+						// Permitir consultar usuarios y extensiones
+						.requestMatchers(HttpMethod.GET, "/Usuario/**", "/extensiones/**").hasRole("ADMIN")
+						// Cualquier otra ruta requiere autenticación
+						.anyRequest().authenticated())
+				.formLogin(form -> form.disable()) // Desactivar formulario
+				.httpBasic(Customizer.withDefaults()) // Permitir Auth básica para pruebas
+				.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class).build();
+	}
 
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
-            throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
+	@Bean
+	public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
+			throws Exception {
+		return authenticationConfiguration.getAuthenticationManager();
 
-    }
+	}
 
-    // TODO eliminar si no se usara
-    // @Bean
-    // public UserDetailsService userDetailsService(){
-    //
-    // }
+	// TODO eliminar si no se usara
+	// @Bean
+	// public UserDetailsService userDetailsService(){
+	//
+	// }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 }

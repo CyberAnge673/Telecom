@@ -24,66 +24,57 @@ import java.util.stream.Collectors;
 @Service
 public class ExtensionService implements Iextension {
 
-    protected  static  Logger logger =  LoggerFactory.getLogger(ExtensionService.class);
-    @Autowired
-    ExtensionRepo extensionRepo;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-    @Autowired
-    UsuarioRepo usuarioRepo;
+	protected static Logger logger = LoggerFactory.getLogger(ExtensionService.class);
+	@Autowired
+	ExtensionRepo extensionRepo;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	@Autowired
+	UsuarioRepo usuarioRepo;
 
+	@Override
+	public Boolean guardarExtension(ExtensionRequest request) {
+		try {
+			Extension extension = new Extension();
+			extension.setEstadoExtension(request.estadoExtension());
+			extension.setNombre(request.nombre());
+			extension.setContexto(request.getContexto());
+			extension.setUsername(request.username());
+			extension.setPassword(passwordEncoder.encode(request.password()));
+			if (request.usuarioId() != null) {
+				Usuario usuario = usuarioRepo.findById(request.usuarioId())
+						.orElseThrow(() -> new RuntimeException("Usuario no encotrado"));
+				extension.setUsuario(usuario);
+			}
+			extensionRepo.save(extension);
+			log.info("Usuario guardado");
+			return true;
 
-    @Override
-    public Boolean guardarExtension(ExtensionRequest request) {
-        try {
-            Extension extension = new Extension();
-            extension.setEstadoExtension(request.estadoExtension());
-            extension.setNombre(request.nombre());
-            extension.setContexto(request.getContexto());
-            extension.setUsername(request.username());
-            extension.setPassword(passwordEncoder.encode(request.password()));
-            if(request.usuarioId() != null){
-                Usuario usuario = usuarioRepo.findById(request.usuarioId())
-                        .orElseThrow(() -> new RuntimeException("Usuario no encotrado"));
-                extension.setUsuario(usuario);
-            }
-            extensionRepo.save(extension);
-            log.info("Usuario guardado");
-            return true;
+		} catch (Exception e) {
+			log.error("ocurrio un error");
+			log.error(e.getMessage());
+			return false;
+		}
 
+	}
 
-        }catch (Exception e){
-            log.error("ocurrio un error");
-            log.error(e.getMessage());
-            return false;
-        }
+	@Override
+	public List<ExtensionesResponse> obtenerExtension() {
+		try {
 
-    }
+			return extensionRepo.findAll().stream().map(ExtensionesResponse::new).collect(Collectors.toList())
+					.reversed();
 
+		} catch (Exception e) {
+			return null;
+		}
 
+	}
 
-    @Override
-    public List<ExtensionesResponse> obtenerExtension() {
-        try {
-
-            return extensionRepo.findAll()
-                    .stream()
-                    .map(ExtensionesResponse::new)
-                    .collect(Collectors.toList()).reversed();
-
-
-        }catch (Exception e){
-            return null;
-        }
-
-    }
-
-
-    @Override
-    public Boolean eliminarExtension(long id) {
-        extensionRepo.deleteById(id);
-        return null;
-    }
-
+	@Override
+	public Boolean eliminarExtension(long id) {
+		extensionRepo.deleteById(id);
+		return null;
+	}
 
 }

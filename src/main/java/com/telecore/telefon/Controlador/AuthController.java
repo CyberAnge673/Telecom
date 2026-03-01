@@ -20,26 +20,27 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/auth")
 public class AuthController {
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+	@Autowired
+	private AuthenticationManager authenticationManager;
 
-    @Autowired
-    private UserDetailsService userDetailsService;
+	@Autowired
+	private UserDetailsService userDetailsService;
 
-    @Autowired
-    private JwtUtil jwtUtil;
+	@Autowired
+	private JwtUtil jwtUtil;
 
-    @PostMapping("/login")
-    public ResponseEntity<AuthenticationResponse> login(@RequestBody @Valid AuthenticationRequest request) {
-        try {
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.username(), request.password()));
-        } catch (BadCredentialsException ex) {
-            return ResponseEntity.status(401).build();
-        }
+	@PostMapping("/login")
+	public ResponseEntity<AuthenticationResponse> login(@RequestBody @Valid AuthenticationRequest request) {
+		try {
+			authenticationManager
+					.authenticate(new UsernamePasswordAuthenticationToken(request.username(), request.password()));
+		} catch (BadCredentialsException ex) {
+			return ResponseEntity.status(401).build();
+		}
 
-        final UserDetails userDetails = userDetailsService.loadUserByUsername(request.username());
-        final String token = jwtUtil.generateToken(userDetails);
-        return ResponseEntity.ok(new AuthenticationResponse(token));
-    }
+		final UserDetails userDetails = userDetailsService.loadUserByUsername(request.username());
+		final String token = jwtUtil.generateToken(userDetails);
+		return ResponseEntity.ok(new AuthenticationResponse(token));
+	}
 
 }

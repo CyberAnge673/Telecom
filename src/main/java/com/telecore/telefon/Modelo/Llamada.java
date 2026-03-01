@@ -14,18 +14,18 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @Entity
-@Getter @Setter
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Llamada{
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
-    private String destino;
-    private LocalDateTime fecha;
-    @ManyToOne
-    @JoinColumn(name="usuario_id")
-    private Usuario usuario;
+public class Llamada {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private String destino;
+	private LocalDateTime fecha;
+	@ManyToOne
+	@JoinColumn(name = "usuario_id")
+	private Usuario usuario;
 }

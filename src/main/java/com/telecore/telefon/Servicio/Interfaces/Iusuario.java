@@ -7,10 +7,8 @@ import com.telecore.telefon.DTO.Response.UsuarioResponse;
 import com.telecore.telefon.Modelo.Usuario;
 
 public interface Iusuario {
-    public List<UsuarioResponse> listarUsuarios();
-    public Boolean guardarUsuario(UsarioRequest usuario);
-    public UsuarioResponse obtenerUsuario(Long id);
-    
-    
-    
+	public List<UsuarioResponse> listarUsuarios();
+	public Boolean guardarUsuario(UsarioRequest usuario);
+	public UsuarioResponse obtenerUsuario(Long id);
+
 }

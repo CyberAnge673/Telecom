@@ -12,30 +12,29 @@ import lombok.Setter;
 @ConfigurationProperties(prefix = "asterisk")
 public class AsteriskSettings extends DefaultAsteriskSettings {
 
-    private String ipServer;
-    private String host;
-    private String managerUser;
-    private String passwordServer;
+	private String ipServer;
+	private String host;
+	private String managerUser;
+	private String passwordServer;
 
-    @Override
-    public String getManagerPassword() {
-        return passwordServer;
-    }
+	@Override
+	public String getManagerPassword() {
+		return passwordServer;
+	}
 
-    @Override
-    public String getManagerUsername() {
-        return managerUser;
-    }
+	@Override
+	public String getManagerUsername() {
+		return managerUser;
+	}
 
-    @Override
-    public String getAsteriskIP() {
-        return ipServer;
-    }
+	@Override
+	public String getAsteriskIP() {
+		return ipServer;
+	}
 
-    @Override
-    public String getAgiHost() {
-        return host;
-    }
-
+	@Override
+	public String getAgiHost() {
+		return host;
+	}
 
 }
