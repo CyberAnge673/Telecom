@@ -64,6 +64,35 @@ Dependencias: Lombok, MapStruct, Validation API, java-asterisk
 
 Testing: JUnit 5, Mockito
 
-## Lisencia  
+## Lisencia
 
 Este proyecto está licenciado bajo la Licencia MIT. Consulte el archivo [LICENSE](LICENSE) para más detalles.
+
+---
+
+## Uso de hooks locales y CI (formateo y linter)
+
+Se han añadido hooks de pre-commit y plugins Maven para formateo (`spotless`) y comprobación (`checkstyle`). A continuación las instrucciones para usarlos y probarlos.
+
+- Activar hooks (Windows PowerShell):
+
+```powershell
+# desde la raíz del repositorio
+.\scripts\install-git-hooks.ps1
+```
+
+- Activar hooks (Unix / Git Bash):
+
+```sh
+git config core.hooksPath .githooks
+```
+
+- Probar manualmente las comprobaciones y aplicar formato:
+
+```sh
+# aplica formato y lanza checkstyle (no hace tests)
+mvn -q -DskipTests=true spotless:apply checkstyle:check
+```
+
+- Qué hace el hook de pre-commit:
+  - Ejecuta `spotless:apply` y `checkstyle:check`. Si `checkstyle` falla, el commit se aborta.
