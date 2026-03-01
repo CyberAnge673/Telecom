@@ -39,7 +39,7 @@ public class Extension {
     @Column(name="tipoExtension")
     private TipoExtension tipo = TipoExtension.SIP;
     @Column(name="contexto")
-    private Contexto contexto = Contexto.internos ;
+    private Contexto contexto = Contexto.INTERNOS;
     @Column(name="estadoExtension")
     private EstadoExtension estadoExtension = EstadoExtension.ACTIVA;
     @Column(name="fechaCreacion")
@@ -63,9 +63,9 @@ public class Extension {
         MANTENIMIENTO
     }
     public enum Contexto{
-        internos,
-        general,
-        defaul
+        INTERNOS,
+        GENERAL,
+        DEFAULT
     }
 
 }

@@ -45,6 +45,6 @@ public record ExtensionRequest (
     }
 
     public Extension.Contexto getContexto(){
-        return this.contexto != null ? this.contexto : Extension.Contexto.internos;
+        return this.contexto != null ? this.contexto : Extension.Contexto.INTERNOS;
     }
 }
