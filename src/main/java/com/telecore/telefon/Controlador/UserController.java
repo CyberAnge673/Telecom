@@ -10,28 +10,27 @@ import com.telecore.telefon.DTO.Request.UsarioRequest;
 
 import java.util.List;
 
-
 @RestController
 @RequestMapping("/Usuario")
 public class UserController {
-    @Autowired
-    UserService userService;
+	@Autowired
+	UserService userService;
 
-    @GetMapping
-    public List<UsuarioResponse> obtenerUsarios(){
-        return userService.listarUsuarios();
-    }
+	@GetMapping
+	public List<UsuarioResponse> obtenerUsarios() {
+		return userService.listarUsuarios();
+	}
 
-    @PostMapping
-    public ResponseEntity<String>guardar(@RequestBody @Valid UsarioRequest request){
-        userService.guardarUsuario(request);
-        return ResponseEntity.ok("Usuario guardado");
-    }
-    @GetMapping("/{id}")
-    public ResponseEntity<UsuarioResponse> Respuesta(@PathVariable Long id){
-        UsuarioResponse usuario = userService.obtenerUsuario(id);
-        return  ResponseEntity.ok(usuario);
+	@PostMapping
+	public ResponseEntity<String> guardar(@RequestBody @Valid UsarioRequest request) {
+		userService.guardarUsuario(request);
+		return ResponseEntity.ok("Usuario guardado");
+	}
+	@GetMapping("/{id}")
+	public ResponseEntity<UsuarioResponse> Respuesta(@PathVariable Long id) {
+		UsuarioResponse usuario = userService.obtenerUsuario(id);
+		return ResponseEntity.ok(usuario);
 
-    }
+	}
 
 }

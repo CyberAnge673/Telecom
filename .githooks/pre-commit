@@ -1,6 +1,6 @@
 #!/bin/sh
 echo "Ejecutando formateo y comprobaciones (Spotless + Checkstyle)..."
-mvn -q -DskipTests=true spotless:apply checkstyle:check
+  mvn -q -DskipTests=true formatter:format checkstyle:check
 RESULT=$?
 if [ $RESULT -ne 0 ]; then
   echo "Pre-commit: las comprobaciones fallaron. Commit abortado."

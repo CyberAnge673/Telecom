@@ -9,8 +9,8 @@ import com.telecore.telefon.Modelo.Usuario;
 import java.util.ArrayList;
 import java.util.List;
 
-public interface  Iextension{
-    public Boolean guardarExtension(ExtensionRequest usarioRequest);
-    public List<ExtensionesResponse> obtenerExtension();
-    public Boolean eliminarExtension(long id);
+public interface Iextension {
+	public Boolean guardarExtension(ExtensionRequest usarioRequest);
+	public List<ExtensionesResponse> obtenerExtension();
+	public Boolean eliminarExtension(long id);
 }

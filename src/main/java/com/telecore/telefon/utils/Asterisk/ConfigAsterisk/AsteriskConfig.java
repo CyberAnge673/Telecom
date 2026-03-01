@@ -8,12 +8,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AsteriskConfig {
 
-    @Bean
-    public AsteriskServer connection(AsteriskSettings asteriskSettings){
-        return new DefaultAsteriskServer(
-                asteriskSettings.getAsteriskIP(),
-                asteriskSettings.getManagerUsername(),
-                asteriskSettings.getManagerPassword()
-        );
-    }
+	@Bean
+	public AsteriskServer connection(AsteriskSettings asteriskSettings) {
+		return new DefaultAsteriskServer(asteriskSettings.getAsteriskIP(), asteriskSettings.getManagerUsername(),
+				asteriskSettings.getManagerPassword());
+	}
 }

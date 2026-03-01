@@ -15,15 +15,16 @@ import java.util.List;
 @RestController
 @RequestMapping("/extensiones")
 public class ExtensionController {
-    @Autowired
-    ExtensionService extensionService;
+	@Autowired
+	ExtensionService extensionService;
 
-    @GetMapping
-    public List<ExtensionesResponse> obtenerExtensiones(){
-        return extensionService.obtenerExtension();
-    }
-//    @PostMapping
-////    public ResponseEntity<String> guardarExtensiones(@RequestBody @Valid ExtensionRequest request){
-////        extensionService.guardarExtension(request);
-////    }
+	@GetMapping
+	public List<ExtensionesResponse> obtenerExtensiones() {
+		return extensionService.obtenerExtension();
+	}
+	// @PostMapping
+	//// public ResponseEntity<String> guardarExtensiones(@RequestBody @Valid
+	// ExtensionRequest request){
+	//// extensionService.guardarExtension(request);
+	//// }
 }
