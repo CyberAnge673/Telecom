@@ -32,7 +32,7 @@ public class ExtensionesResponse {
         this.descripcion = extension.getDescripcion();
         this.username = extension.getUsername();
         this.tipo = extension.getTipo() != null ? extension.getTipo().name() :  "DESCONOCIDO";
-        this.contexto = extension.getContexto() != null ? extension.getContexto() : "DESCONOCIDO";
+        this.contexto = extension.getContexto() != null ? extension.getContexto().name() : "DESCONOCIDO";
         this.fechaCreacion = extension.getFechaCreacion();
         this.estado = extension.getEstadoExtension().name();
         if(extension.getUsuario() != null){
